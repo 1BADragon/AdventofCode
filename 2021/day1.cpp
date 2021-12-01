@@ -4,37 +4,21 @@
 #include <string>
 #include <numeric>
 
-static void part1(const std::string &filename);
-static void part2(const std::string &filename);
+#include <advent.hpp>
 
-int main(int argc, char **argv)
+void part1(std::istream &input)
 {
-    if (argc < 2) {
-        std::cerr << "Invalid input" << std::endl;
-        return -1;
-    }
-
-    part1(argv[1]);
-    part2(argv[1]);
-
-    return 0;
-}
-
-static void part1(const std::string &filename)
-{
-    std::ifstream infile(filename);
-
     int prev;
     int curr;
     int counter = 0;
 
-    infile >> prev;
+    input >> prev;
 
-    while (!infile.eof())
+    while (!input.eof())
     {
-        infile >> curr;
+        input >> curr;
 
-        if (infile.eof()) {
+        if (input.eof()) {
             break;
         }
 
@@ -46,18 +30,15 @@ static void part1(const std::string &filename)
     }
 
     std::cout << "Answer 1: " << counter << std::endl;
-
-    infile.close();
 }
 
-static void part2(const std::string &filename)
+void part2(std::istream &input)
 {
     std::array<int, 3> win;
-    std::ifstream infile(filename);
 
-    infile >> win[0];
-    infile >> win[1];
-    infile >> win[2];
+    input >> win[0];
+    input >> win[1];
+    input >> win[2];
 
     int curr;
     int prev;
@@ -65,14 +46,14 @@ static void part2(const std::string &filename)
 
     prev = std::accumulate(win.begin(), win.end(), 0);
 
-    while (!infile.eof())
+    while (!input.eof())
     {
         win[0] = win[1];
         win[1] = win[2];
 
-        infile >> win[2];
+        input >> win[2];
 
-        if (infile.eof()) {
+        if (input.eof()) {
             break;
         }
 
