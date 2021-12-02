@@ -27,6 +27,11 @@ int main(int argc, char **argv)
         if (args.size() > 2) {
             input_file.open(argv[2]);
 
+            if (!input_file.is_open()) {
+                std::cerr << "Unable to open \"" << argv[2] << "\"" << std::endl;
+                return -1;
+            }
+
             stream_data << input_file.rdbuf();
         } else {
             stream_data << std::cin.rdbuf();
@@ -34,8 +39,6 @@ int main(int argc, char **argv)
 
         input_data = stream_data.str();
     }
-
-
 
     void *hndl = dlopen(runner_filename.c_str(), RTLD_NOW | RTLD_GLOBAL);
 
