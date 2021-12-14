@@ -5,7 +5,7 @@ include(advent.cmake)
 
 set(CMAKE_CXX_STANDARD 20)
 
-option(BUILD_2015 "Build year 2015 solutions" off)
+option(BUILD_2015 "Build year 2015 solutions" on)
 option(BUILD_2021 "Build year 2015 solutions" on)
 
 add_executable(advent runner/advent.cpp)
@@ -14,10 +14,5 @@ set_target_properties(advent
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
-if (BUILD_2015)
-    add_subdirectory(2015)
-endif()
-
-if (BUILD_2021)
-    add_subdirectory(2021)
-endif()
+add_subdirectory(2015)
+add_subdirectory(2021)
